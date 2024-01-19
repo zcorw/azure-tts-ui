@@ -34,7 +34,7 @@ const FormComponent: React.FC<FormProps> = (props: FormProps) => {
         label="内容"
         rules={[{ required: true, message: "内容不能为空" }]}
       >
-        <Input.TextArea autoSize={{ minRows: 5, maxRows: 10 }} />
+        <Input.TextArea autoSize={{ minRows: 5, maxRows: 10 }} showCount />
       </Form.Item>
       <Form.Item<FieldType> name="lang" label="语言">
         <Select
