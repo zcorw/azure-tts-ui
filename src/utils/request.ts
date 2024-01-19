@@ -3,6 +3,11 @@ import download from "downloadjs";
 
 const errorMessage = console.error;
 const statusCodes = [401, 403];
+let url = "";
+if (typeof chrome.storage !== "undefined")
+  chrome.storage.local.get(["url"], (result) => {
+    url = result.url;
+  });
 
 // 一般请求配置
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
@@ -10,8 +15,6 @@ axios.defaults.headers.get["Cache-Control"] = "no-cache";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const reponseFailCallback: (error: any) => any = (error) => {
-  console.log("🚀 ~ file: request.ts:35 ~ error:", error);
-
   if (error.response === undefined || error.code === "ERR_NETWORK") {
     errorMessage("请检查您的网络环境");
     return Promise.reject({ code: 400, message: "请检查您的网络环境" });
@@ -34,6 +37,11 @@ const reponseFailCallback: (error: any) => any = (error) => {
   }
   return Promise.reject(error);
 };
+
+axios.interceptors.request.use((config) => {
+  config.url = url + config.url;
+  return config;
+});
 
 axios.interceptors.response.use((response) => {
   const { data, headers, config } = response;

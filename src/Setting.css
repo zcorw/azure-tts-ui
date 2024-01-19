@@ -1,0 +1,17 @@
+.setting-box {
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+}
+.setting-box .url-input {
+  flex: 1;
+}
+.setting-box .button {
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+  margin-left: 20px;
+}
+.setting-box .button a {
+  cursor: pointer;
+}

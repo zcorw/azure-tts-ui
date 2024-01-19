@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FormComponent from "./Form";
 import "./App.css";
 import Tasks from "./Tasks";
+import Setting from "./Setting";
 import { taskType, FormType } from "./Tasks.d";
 import { tts, queryProgress, downloadMp3 } from "./utils/request";
 
@@ -46,6 +47,7 @@ const App: React.FC = () => {
   };
   return (
     <div className="App">
+      <Setting />
       <div className="container">
         <FormComponent onSubmit={handleAdd} />
       </div>
